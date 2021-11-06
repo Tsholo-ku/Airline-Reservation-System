@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
 public class Airline {
-    public int[] seats = new int[10];
-    public int i;
-    public int choice;
-    public String change;
+    private int[] seats = new int[10];
+    private int i;
+    private int choice;
+    private String change;
 
 
     // Reservation
