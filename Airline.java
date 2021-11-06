@@ -24,6 +24,7 @@ public class Airline {
         }
     }
 
+    //First Class
     public void firstClass() {
         Scanner in = new Scanner(System.in);
 
@@ -46,6 +47,7 @@ public class Airline {
         }
 
         }
+    //Economy Class
         public void economyClass(){
             Scanner in = new Scanner(System.in);
             for (i = 5; i < 10; i++) {
