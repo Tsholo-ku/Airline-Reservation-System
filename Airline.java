@@ -22,16 +22,17 @@ public class Airline {
         in.close();
     }
 
-    public void firstClass() {
+    public int firstClass() {
         Scanner in = new Scanner(System.in);
         boolean seatAvailable = false; // use a flag to indicate if a seat is availabe or not
 
         for (i = 0; i < 5; i++) {
-            if (seats[i] == 0) {
-                seats[i] = 1;
+            if (this.seats[i] == 0) {
+                this.seats[i] = 1;
                 System.out.println("Your seat number is " + (i + 1) + " in First Class");
                 seatAvailable = true; // set flag to true if found a seat available
                 break;
+
             }
         }
 
@@ -40,36 +41,43 @@ public class Airline {
                     "First Class is currently at capacity, would you like to be placed in Economy Class? \n Please type Y/N:  ");
             change = in.next();
             if (change == "y") {
-                economyClass();
+                return economyClass();
             } else {
                 System.out.println("Next flight is in 3 hours");
+                return -1; // indicates no seat available
             }
+        } else {
+            return (i + 1); // return the seat number
         }
-
-        in.close();
 
     }
 
-    public void economyClass() {
+    public int economyClass() {
         Scanner in = new Scanner(System.in);
+        boolean seatAvailable = false;
+
         for (i = 5; i < 10; i++) {
-            if (seats[i] == 0) {
-                seats[i] = 1;
+            if (this.seats[i] == 0) {
+                this.seats[i] = 1;
                 System.out.println("Your seat number is " + (i + 1) + " in Economy Class");
+                seatAvailable = true;
                 break;
+
             }
         }
-        if (i > 9) {
+        if (!seatAvailable) {
             System.out.println(
                     "Economy Class is currently at capacity, would you like to be placed in First Class? \n Please type Y/N: ");
             change = in.next();
             if (change == "y") {
-                firstClass();
+                return firstClass();
             } else {
                 System.out.println("Next flight leaves in 3 hours");
+                return -1; // indicates no seat available
             }
+        } else {
+            return (i + 1); // returns the seat available
         }
-        in.close();
     }
 
 }
