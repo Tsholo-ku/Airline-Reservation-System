@@ -5,25 +5,30 @@ public class Airline {
     private int i;
     private int choice;
     private String change;
+    private Scanner input;
+
+    public Airline(){
+        Scanner in = new Scanner(System.in);
+        this.input = in;
+    }
 
     // Reservation
-    public void reservation() {
-        Scanner in = new Scanner(System.in);
+    public int reservation() {
         System.out.println("Please type 1 for First Class:\n Please type 2 for Economy Class: ");
-        int choice = in.nextInt();
+        int choice = this.input.nextInt();
 
         if (choice == 1) {
-            firstClass();
+            return firstClass();
         } else if (choice == 2) {
-            economyClass();
+           return economyClass();
         } else {
             System.out.println("Invalid selection!");
+            return -1;
         }
-        in.close();
+
     }
 
     public int firstClass() {
-        Scanner in = new Scanner(System.in);
         boolean seatAvailable = false; // use a flag to indicate if a seat is availabe or not
 
         for (i = 0; i < 5; i++) {
@@ -39,7 +44,7 @@ public class Airline {
         if (!seatAvailable) {
             System.out.println(
                     "First Class is currently at capacity, would you like to be placed in Economy Class? \n Please type Y/N:  ");
-            change = in.next();
+            change = this.input.next();
             if (change == "y") {
                 return economyClass();
             } else {
@@ -53,7 +58,7 @@ public class Airline {
     }
 
     public int economyClass() {
-        Scanner in = new Scanner(System.in);
+
         boolean seatAvailable = false;
 
         for (i = 5; i < 10; i++) {
@@ -68,7 +73,7 @@ public class Airline {
         if (!seatAvailable) {
             System.out.println(
                     "Economy Class is currently at capacity, would you like to be placed in First Class? \n Please type Y/N: ");
-            change = in.next();
+            change = this.input.next();
             if (change == "y") {
                 return firstClass();
             } else {
